@@ -2,7 +2,7 @@
 
 **Agentic Domain RAG with hybrid retrieval, cross-encoder reranking, grounded citations, and a real evaluation harness — a local, no-API-key platform that *measures* retrieval quality (Recall@K, MRR, nDCG, citation faithfulness, latency, cost) instead of just demoing a chatbot.**
 
----
+----
 
 ## Why basic RAG is not enough
 
@@ -15,7 +15,7 @@ The typical "chat with your PDF" demo embeds some chunks, does a single vector s
 
 Lexsearch EvalBench is built around the **evaluation loop**: a labelled golden set, four retrieval strategies, ablations, a citation-faithfulness checker, and latency/cost accounting — so every claim of "better" is backed by a number.
 
----
+----
 
 ## Architecture
 
@@ -54,7 +54,7 @@ flowchart TD
 
 See [ARCHITECTURE.md](ARCHITECTURE.md) for the module-by-module breakdown and design decisions.
 
----
+----
 
 ## Quickstart
 
@@ -95,7 +95,7 @@ ln -s /tmp/lexsearch_venv .venv
 Everything else (`make`, scripts) then works unchanged. A colon-free path needs none of this.
 </details>
 
----
+----
 
 ## Dataset
 
@@ -114,7 +114,7 @@ Questions span three difficulty bands: direct lookups, **paraphrased / vocabular
 
 Regenerate/validate with `make sample-data` (validates that every question references existing docs).
 
----
+----
 
 ## Retrieval methods
 
@@ -127,7 +127,7 @@ Regenerate/validate with `make sample-data` (validates that every question refer
 
 All retrievers return ranked chunks with **per-method scores** and metadata, so you can see exactly why a chunk surfaced.
 
----
+----
 
 ## Evaluation methodology
 
@@ -155,7 +155,7 @@ Metrics are deterministic and unit-tested (`tests/test_metrics.py`) against hand
 
 > **Baseline → best: BM25 → Dense improves Recall@1 +0.040, MRR +0.020, nDCG@1 +0.040.** BM25 loses ground specifically on the *paraphrased / vocabulary-mismatch* questions that semantic embeddings handle. Reranking adds no quality here because first-stage recall is already saturated — it pays off when the first stage is weaker (see Limitations). This is reported faithfully rather than forcing "rerank wins."
 
----
+----
 
 ## Ablation results
 
@@ -176,7 +176,7 @@ Metrics are deterministic and unit-tested (`tests/test_metrics.py`) against hand
 
 ![Ablations](reports/charts/ablations.png)
 
----
+----
 
 ## Example query with citations
 
@@ -196,7 +196,7 @@ Grounded, cited answer produced by the **local extractive answerer** (no API key
 
 The answerer only emits sentences drawn from retrieved evidence, so it cannot fabricate unsupported claims; the checker independently re-verifies every sentence and flags any that aren't supported.
 
----
+----
 
 ## Performance / latency
 
@@ -211,7 +211,7 @@ The answerer only emits sentences drawn from retrieved evidence, so it cannot fa
 
 The reranker is ~10× the cost of hybrid — the classic precision/latency trade-off, quantified. "Cost" here is local compute time; the LLM adapters (optional) would add token cost, which the grounding prompt minimises by sending only the top‑k chunks.
 
----
+----
 
 ## API
 
@@ -225,7 +225,7 @@ The reranker is ~10× the cost of hybrid — the classic precision/latency trade
 
 Pydantic schemas in [app/schemas.py](app/schemas.py); interactive docs at `/docs`.
 
----
+----
 
 ## Screenshots
 
@@ -239,7 +239,7 @@ The Streamlit dashboard (`make run-ui`) has three tabs — **Query & Answer** (g
 
 *(Charts above are generated artifacts committed under `reports/charts/`; UI screenshots can be dropped into `reports/` as `ui_query.png` etc.)*
 
----
+----
 
 ## What improved from baseline to best
 
@@ -247,7 +247,7 @@ The Streamlit dashboard (`make run-ui`) has three tabs — **Query & Answer** (g
 - **Fusion tuning:** a **0.75 dense / 0.25 lexical** blend reached **nDCG@5 = 1.0** and the highest context precision (0.240), beating either retriever alone.
 - **Faithfulness:** the extractive answerer + checker holds **citation faithfulness at 1.00** across all 50 questions, by construction emitting only supported sentences.
 
----
+----
 
 ## Limitations
 
@@ -257,7 +257,7 @@ The Streamlit dashboard (`make run-ui`) has three tabs — **Query & Answer** (g
 - **Document-level relevance labels.** Chunk-level golden labels are supported by the schema but not fully exploited in the headline metrics.
 - **Hashing-embedder fallback is lexical**, so fully-offline mode loses some semantic recall versus the real sentence-transformer.
 
----
+----
 
 ## Production hardening roadmap
 
@@ -270,7 +270,7 @@ The Streamlit dashboard (`make run-ui`) has three tabs — **Query & Answer** (g
 7. **MLflow/experiment tracking** for ablation sweeps (scaffolded in requirements, off by default).
 8. **Packaging:** Dockerfile + compose for API+UI; pinned lockfile; model pre-bake for air-gapped deploys.
 
----
+----
 
 ## Repository layout
 
