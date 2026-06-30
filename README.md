@@ -2,8 +2,6 @@
 
 **Agentic Domain RAG with hybrid retrieval, cross-encoder reranking, grounded citations, and a real evaluation harness — a local, no-API-key platform that *measures* retrieval quality (Recall@K, MRR, nDCG, citation faithfulness, latency, cost) instead of just demoing a chatbot.**
 
-> Resume one-liner: *Built a production-minded RAG evaluation bench that benchmarks BM25 vs dense vs hybrid vs hybrid+rerank on a labelled golden set, runs chunking/fusion/rerank ablations, and verifies answer faithfulness against retrieved evidence — fully reproducible on a laptop with no paid APIs.*
-
 ---
 
 ## Why basic RAG is not enough
