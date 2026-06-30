@@ -1,0 +1,33 @@
+# ── Core API / UI ────────────────────────────────────────────────────────────
+fastapi>=0.110,<0.116
+uvicorn[standard]>=0.27,<0.31
+streamlit>=1.30,<1.40
+pydantic>=2.5,<3.0
+pydantic-settings>=2.1,<3.0
+python-dotenv>=1.0,<2.0
+requests>=2.31,<3.0
+
+# ── Retrieval / ML ───────────────────────────────────────────────────────────
+rank-bm25>=0.2.2,<0.3
+scikit-learn>=1.3,<1.6
+numpy>=1.26,<2.1
+pandas>=2.1,<2.3
+tabulate>=0.9,<0.10            # pandas .to_markdown() for report tables
+
+# Dense embeddings + cross-encoder reranker.
+# These are heavier (pull in torch). The codebase degrades gracefully to a
+# deterministic hashing embedder + lexical reranker if they are unavailable,
+# so the demo still runs end-to-end without them.
+sentence-transformers>=2.5,<4.0
+
+# ── Charts ───────────────────────────────────────────────────────────────────
+plotly>=5.18,<6.0
+matplotlib>=3.8,<4.0
+kaleido>=0.2.1,<0.3            # static plotly image export for reports/charts
+
+# ── Testing ──────────────────────────────────────────────────────────────────
+pytest>=8.0,<9.0
+httpx>=0.27,<0.28             # FastAPI TestClient dependency
+
+# ── Optional experiment tracking (lightweight usage only) ────────────────────
+# mlflow>=2.10,<2.15          # uncomment to enable MLflow logging in run_eval

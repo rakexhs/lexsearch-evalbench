@@ -1,0 +1,52 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+build/
+dist/
+
+# Virtual environment
+.venv
+.venv/
+venv/
+env/
+
+# Environment / secrets
+.env
+.env.local
+
+# Caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# Local databases & indexes
+*.db
+*.sqlite
+*.sqlite3
+data/index/
+*.faiss
+*.npy
+*.pkl
+
+# Model artifacts / HF cache (kept local)
+.hf_cache/
+models/
+
+# MLflow
+mlruns/
+
+# OS
+.DS_Store
+
+# Claude Code internals
+.claude/
+
+# Chat transcripts / local exports
+*.pdf
+
+# Reports artifacts (regenerated) — keep tracked report stubs, ignore generated CSV/PNG churn if desired
+# (left tracked by default so the resume artifacts are visible)

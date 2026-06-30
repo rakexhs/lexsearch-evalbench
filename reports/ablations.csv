@@ -1,0 +1,16 @@
+experiment,setting,method,recall_at_5,ndcg_at_5,mrr,context_precision,faithfulness,mean_latency_ms
+chunk_size,size=300,hybrid_rerank,1.0,0.9902,0.99,0.214,1.0,108.572
+chunk_size,size=550,hybrid_rerank,1.0,0.9902,0.99,0.215,1.0,99.095
+chunk_size,size=800,hybrid_rerank,1.0,0.9902,0.99,0.215,1.0,93.034
+chunk_size,size=1200,hybrid_rerank,1.0,0.9902,0.99,0.215,1.0,92.793
+chunk_overlap,overlap=0,hybrid_rerank,1.0,0.9902,0.99,0.215,1.0,103.504
+chunk_overlap,overlap=40,hybrid_rerank,1.0,0.9902,0.99,0.215,1.0,98.734
+chunk_overlap,overlap=80,hybrid_rerank,1.0,0.9902,0.99,0.215,1.0,97.222
+chunk_overlap,overlap=160,hybrid_rerank,1.0,0.9902,0.99,0.215,1.0,97.867
+hybrid_weight,dense_weight=0.0,hybrid,1.0,0.9812,0.98,0.212,0.0,9.214
+hybrid_weight,dense_weight=0.25,hybrid,1.0,0.9926,0.99,0.222,0.0,9.872
+hybrid_weight,dense_weight=0.5,hybrid,1.0,0.9926,0.99,0.231,0.0,9.854
+hybrid_weight,dense_weight=0.75,hybrid,1.0,1.0,1.0,0.2397,0.0,9.931
+hybrid_weight,dense_weight=1.0,hybrid,1.0,0.9984,1.0,0.238,0.0,9.942
+reranker,reranker=off,hybrid,1.0,0.9926,0.99,0.228,1.0,9.241
+reranker,reranker=on,hybrid_rerank,1.0,0.9902,0.99,0.215,1.0,101.229
